@@ -1,5 +1,6 @@
 const helloWorldBox=document.getElementById('hello-world')
 const postBox=document.getElementById('posts-box')
+const spinnerBox=document.getElementById('spinner-box')
 
 $.ajax({
   type:'GET',
@@ -18,12 +19,14 @@ $.ajax({
   success: function(response){
     console.log(response)
     const data= response.data
+    setTimeout(()=>{    spinnerBox.classList.add('not-visible')
     console.log(data)
     data.forEach(el => {
       postBox.innerHTML+=`
       ${el.title}- <b>${el.body}</b><br>
       `// ``allows for multi lines and inject data add
-    });
+    });},100)
+
   },
   error: function(error){
     console.log('error',error)
