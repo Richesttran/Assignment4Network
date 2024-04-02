@@ -8,7 +8,10 @@ const body= document.getElementById("id_body")
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 const url =window.location.href
 const alertBox= document.getElementById("alert-box")
-console.log('csrf',csrf[0].value)
+const dropozone=document.getElementById('my-dropzone')
+
+const addBtn= document.getElementById("add-btn")
+const closeBtn= document.getElementByClassName('add-modal-close')
 let visible=3
 const  getCookie= (name)=> {
   let cookieValue = null;
@@ -148,14 +151,18 @@ postForm.addEventListener('submit',e=>{
       `
       ),
       likeUnlikePost()
-      $('#addPostModal').modal('hide')
+     // $('#addPostModal').modal('hide')
       handleAlerts('success','New post Added!')
-      postForm.reset()
+     // postForm.reset()
     },
     error:function(error){
       console.log(error)
       handleAlerts('danger','oops.... something went wrong')
     }
   })
+})
+
+addBtn.addEventListener('click',()=>{
+  dropozone.classList.remove()
 })
 getData()
