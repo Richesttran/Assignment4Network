@@ -93,11 +93,11 @@ def delete_post(request,pk):
   if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
     obj.delete()
     return JsonResponse({})
-  def image_upload_view(request):
-    print (request.Files)
-    if request.method=='POST':
-      img = request.FILES.get('file')
-      new_post_id = request.POST.get('new_post_id')
-      post = Post.objects.get(id=new_post_id)
-      Photo.objects.create(image=img, post=post)
-    return HttpResponse()
+def image_upload_view(request):
+ # print (request.Files)
+  if request.method=='POST':
+    img = request.FILES.get('file')
+    new_post_id = request.POST.get('new_post_id')
+    post = Post.objects.get(id=new_post_id)
+    Photo.objects.create(image=img, post=post)
+  return HttpResponse()
