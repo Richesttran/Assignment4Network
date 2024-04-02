@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from .models import Post
 from profiles.models import Profile
 from django.http import HttpResponse
@@ -12,5 +13,5 @@ def action_permission(func):
             return func(request,**kwargs)
         else:
             print('no')
-            return HttpResponse('access denied- you are not the author')
+            return redirect({'posts:main-board'})
     return wrapper
