@@ -13,5 +13,5 @@ def action_permission(func):
             return func(request,**kwargs)
         else:
             print('no')
-            return redirect({'posts:main-board'})
+            return redirect('posts:main-board')
     return wrapper

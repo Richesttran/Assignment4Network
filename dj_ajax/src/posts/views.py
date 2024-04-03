@@ -72,7 +72,7 @@ def post_detail_data_view(request,pk):
       'logged_in': request.user.username,
     }
     return JsonResponse({'data':data})
-  return redirect({'posts:main-board'})
+  return redirect('posts:main-board')
 
 @login_required
 def like_unlike_post(request):
@@ -87,7 +87,7 @@ def like_unlike_post(request):
       liked=True
       obj.liked.add(request.user)
     return JsonResponse({'liked': liked, 'count': obj.like_count})
-  return redirect({'posts:main-board'})
+  return redirect('posts:main-board')
 @action_permission
 @login_required
 def update_post(request, pk):
@@ -102,7 +102,7 @@ def update_post(request, pk):
     'title': new_title,
     'body': new_body, 
     })
-  return redirect({'posts:main-board'})
+  return redirect('posts:main-board')
 @login_required
 @action_permission
 def delete_post(request,pk):
@@ -110,8 +110,7 @@ def delete_post(request,pk):
   if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
     obj.delete()
     return JsonResponse({'msg': 'Access some message'})
-
-  return redirect({'posts:main-board'})
+  return redirect('posts:main-board')
 @login_required
 def image_upload_view(request):
  # print (request.Files)
